@@ -1,0 +1,10 @@
+.service img{
+    width: 90%;
+}
+.service-style{
+    background-color: rgb(208, 212, 216);
+    border-radius: 20px;
+}
+.title-color{
+    color:#f3b808;
+}

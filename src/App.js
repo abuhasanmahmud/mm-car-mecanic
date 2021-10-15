@@ -1,23 +1,58 @@
-import logo from './logo.svg';
+
+import { BrowserRouter,Switch,Route } from 'react-router-dom';
 import './App.css';
+import Header from './pages/Header/Header';
+import Home from './pages/Home/Home/Home';
+import AboutUs from './pages/AboutUs/AboutUs';
+import NotFound from './pages/NotFound/NotFound';
+import Footer from './pages/Footer/Footer';
+import Contract from './pages/Contract/Contract';
+import Booking from './pages/Booking/Booking';
+import Login from './pages/Login/Login/Login';
+import AuthProvider from './Context/AuthProvider';
+import PrivetRouter from './pages/Login/PrivetRouter/PrivetRouter';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <AuthProvider>
+    <BrowserRouter>
+        <Header></Header>
+        <Switch>
+          <Route exact path="/">
+              <Home></Home>
+          </Route>
+
+          <Route path="/home">
+              <Home></Home>
+          </Route> 
+
+          <Route path="/about">
+              <AboutUs></AboutUs>
+          </Route> 
+
+          <Route path="/contract">
+              <Contract></Contract>
+          </Route> 
+           
+           <PrivetRouter path="/booking/:serviceid">
+             <Booking></Booking>
+           </PrivetRouter>
+
+           <Route path="/login">
+             <Login></Login>
+           </Route>
+
+          <Route path="*">
+              <NotFound></NotFound>
+          </Route>
+
+        </Switch>
+        <Footer></Footer>
+    </BrowserRouter>
+    </AuthProvider>
+      
     </div>
   );
 }
